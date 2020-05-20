@@ -1,0 +1,59 @@
+# // Type definition(schema)
+# // use - instead of createUser(name: String!, email: String!, age: Int): User! because we created input type for that
+
+
+# this is working import statement below:
+# import UserOrderByInput, from './generated/prisma.graphql'
+
+type Query {
+  users(query: String, first: Int, skip: Int, after: String, orderBy: UserOrderByInput): [User!]!
+  me: User!
+}
+type Mutation {
+  createUser(data: CreateUserInput!): AuthPayLoad!
+  loginUser(data: LoginUserInput!): AuthPayLoad!
+  deleteUser: User!
+  updateUser(data: UpdateUserInput!): User!
+}
+
+# type Subscription{
+# }
+
+type AuthPayLoad{
+  token: String!
+  user: User!
+}
+
+input CreateUserInput {
+  name: String
+  email: String!
+  password: String!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  password: String
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String
+  password: String!
+  posts: [Post!]!
+  comments: [Comment!]!
+  updatedAt: String!
+  createdAt: String!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}

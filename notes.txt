@@ -1,0 +1,2 @@
+about error with @unique - https://stackoverflow.com/questions/56968094/how-can-i-make-unique-directive-work-in-datamodel-prisma
+  
